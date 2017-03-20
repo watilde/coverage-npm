@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/install/action/move.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">lib/install/action</a> move.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.91% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>40/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>5/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.24% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/17</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90.7% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>39/43</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+var fs = require('graceful-fs')
+var path = require('path')
+var chain = require('slide').chain
+var iferr = require('iferr')
+var rimraf = require('rimraf')
+var mkdirp = require('mkdirp')
+var rmStuff = require('../../unbuild.js').rmStuff
+var lifecycle = require('../../utils/lifecycle.js')
+var updatePackageJson = require('../update-package-json.js')
+var move = require('../../utils/move.js')
+&nbsp;
+/*
+  Move a module from one point in the node_modules tree to another.
+  Do not disturb either the source or target location's node_modules
+  folders.
+*/
+&nbsp;
+module.exports = function (staging, pkg, log, next) {
+  log.silly('move', pkg.fromPath, pkg.path)
+  chain([
+    [lifecycle, pkg.package, 'preuninstall', pkg.fromPath, false, true],
+    [lifecycle, pkg.package, 'uninstall', pkg.fromPath, false, true],
+    [rmStuff, pkg.package, pkg.fromPath],
+    [lifecycle, pkg.package, 'postuninstall', pkg.fromPath, false, true],
+    [moveModuleOnly, pkg.fromPath, pkg.path, log],
+    [lifecycle, pkg.package, 'preinstall', pkg.path, false, true],
+    [removeEmptyParents, path.resolve(pkg.fromPath, '..')],
+    [updatePackageJson, pkg, pkg.path]
+  ], next)
+}
+&nbsp;
+function removeEmptyParents (pkgdir, next) {
+  fs.rmdir(pkgdir, function (er) {
+    // FIXME: Make sure windows does what we want here
+    if (er &amp;&amp; er.code !== 'ENOENT') return next()
+    removeEmptyParents(path.resolve(pkgdir, '..'), next)
+  })
+}
+&nbsp;
+function moveModuleOnly (from, to, log, done) {
+  var fromModules = path.join(from, 'node_modules')
+  var tempFromModules = from + '.node_modules'
+  var toModules = path.join(to, 'node_modules')
+  var tempToModules = to + '.node_modules'
+&nbsp;
+  log.silly('move', 'move existing destination node_modules away', toModules)
+&nbsp;
+  move(toModules, tempToModules, removeDestination(done))
+&nbsp;
+  function removeDestination (next) {
+    return function (er) {
+      log.silly('move', 'remove existing destination', to)
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (er) {
+        rimraf(to, iferr(next, makeDestination(next)))
+      } else {
+<span class="cstat-no" title="statement not covered" >        rimraf(to, iferr(next, makeDestination(iferr(next, moveToModulesBack(next)))))</span>
+      }
+    }
+  }
+&nbsp;
+  function <span class="fstat-no" title="function not covered" >moveToModulesBack </span>(next) {
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >      log.silly('move', 'move existing destination node_modules back', toModules)</span>
+<span class="cstat-no" title="statement not covered" >      move(tempToModules, toModules, iferr(done, next))</span>
+    }
+  }
+&nbsp;
+  function makeDestination (next) {
+    return function () {
+      log.silly('move', 'make sure destination parent exists', path.resolve(to, '..'))
+      mkdirp(path.resolve(to, '..'), iferr(done, moveNodeModules(next)))
+    }
+  }
+&nbsp;
+  function moveNodeModules (next) {
+    return function () {
+      log.silly('move', 'move source node_modules away', fromModules)
+      move(fromModules, tempFromModules, iferr(doMove(next), doMove(moveNodeModulesBack(next))))
+    }
+  }
+&nbsp;
+  function doMove (next) {
+    return function () {
+      log.silly('move', 'move module dir to final dest', from, to)
+      move(from, to, iferr(done, next))
+    }
+  }
+&nbsp;
+  function moveNodeModulesBack (next) {
+    return function () {
+      mkdirp(from, iferr(done, function () {
+        log.silly('move', 'put source node_modules back', fromModules)
+        move(tempFromModules, fromModules, iferr(done, next))
+      }))
+    }
+  }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

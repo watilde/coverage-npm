@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/install/diff-trees.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/install</a> diff-trees.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84.68% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>94/111</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.76% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>67/84</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>22/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.54% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>85/96</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1465x</span>
+<span class="cline-any cline-yes">1465x</span>
+<span class="cline-any cline-yes">1465x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1678x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1678x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1678x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1678x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-yes">226x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7211x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2588x</span>
+<span class="cline-any cline-yes">2280x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1761x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-yes">2110x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12056x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1415x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4252x</span>
+<span class="cline-any cline-yes">4252x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-yes">2320x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1707x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">232x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1693x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">2038x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">2592x</span>
+<span class="cline-any cline-yes">2592x</span>
+<span class="cline-any cline-yes">2592x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2592x</span>
+<span class="cline-any cline-yes">1476x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1116x</span>
+<span class="cline-any cline-yes">1116x</span>
+<span class="cline-any cline-yes">1116x</span>
+<span class="cline-any cline-yes">1116x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1116x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+var validate = require('aproba')
+var npa = require('npm-package-arg')
+var flattenTree = require('./flatten-tree.js')
+&nbsp;
+function nonRegistrySource (pkg) {
+  validate('O', arguments)
+  var requested = pkg._requested || (pkg._from &amp;&amp; npa(pkg._from))
+  if (!requested) return false
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (requested.type === 'hosted') <span class="cstat-no" title="statement not covered" >return true</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (requested.type === 'local') <span class="cstat-no" title="statement not covered" >return true</span>
+  return false
+}
+&nbsp;
+function pkgAreEquiv (aa, bb) {
+  var aaSha = (aa.dist &amp;&amp; aa.dist.shasum) || aa._shasum
+  var bbSha = (bb.dist &amp;&amp; bb.dist.shasum) || bb._shasum
+  if (aaSha === bbSha) return true
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (aaSha || bbSha) return false
+<span class="cstat-no" title="statement not covered" >  if (nonRegistrySource(aa) || nonRegistrySource(bb)) <span class="cstat-no" title="statement not covered" >return false</span></span>
+<span class="cstat-no" title="statement not covered" >  if (aa.version === bb.version) <span class="cstat-no" title="statement not covered" >return true</span></span>
+<span class="cstat-no" title="statement not covered" >  return false</span>
+}
+&nbsp;
+function getUniqueId (pkg) {
+  var versionspec = pkg._shasum
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!versionspec &amp;&amp; nonRegistrySource(pkg)) {
+<span class="cstat-no" title="statement not covered" >    if (pkg._requested) {</span>
+<span class="cstat-no" title="statement not covered" >      versionspec = pkg._requested.spec</span>
+    } else <span class="cstat-no" title="statement not covered" >if (pkg._from) {</span>
+<span class="cstat-no" title="statement not covered" >      versionspec = npa(pkg._from).spec</span>
+    }
+  }
+  if (!versionspec) {
+    versionspec = pkg.version
+  }
+  return pkg.name + '@' + versionspec
+}
+&nbsp;
+function pushAll (aa, bb) {
+  Array.prototype.push.apply(aa, bb)
+}
+&nbsp;
+module.exports = function (oldTree, newTree, differences, log, next) {
+  validate('OOAOF', arguments)
+  pushAll(differences, sortActions(diffTrees(oldTree, newTree)))
+  log.finish()
+  next()
+}
+&nbsp;
+function isLink (node) {
+  return node &amp;&amp; node.isLink
+}
+&nbsp;
+function requiredByAllLinked (node) {
+  if (!node.requiredBy.length) return false
+  return node.requiredBy.filter(isLink).length === node.requiredBy.length
+}
+&nbsp;
+function isNotTopOrExtraneous (node) {
+  return !node.isTop &amp;&amp; !node.userRequired &amp;&amp; !node.existing
+}
+&nbsp;
+var sortActions = module.exports.sortActions = function (differences) {
+  var actions = {}
+  differences.forEach(function (action) {
+    var child = action[1]
+    actions[child.location] = action
+  })
+&nbsp;
+  var sorted = []
+  var added = {}
+&nbsp;
+  var sortedlocs = Object.keys(actions).sort(sortByLocation)
+&nbsp;
+  // We're going to sort the actions taken on top level dependencies first, before
+  // considering the order of transitive deps. Because we're building our list
+  // from the bottom up, this means we will return a list with top level deps LAST.
+  // This is important in terms of keeping installations as consistent as possible
+  // as folks add new dependencies.
+  var toplocs = sortedlocs.filter(function (location) {
+    var mod = actions[location][1]
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!mod.requiredBy) <span class="cstat-no" title="statement not covered" >return true</span>
+    // If this module is required by any non-top level module
+    // or by any extraneous module, eg user requested or existing
+    // then we don't want to give this priority sorting.
+    return !mod.requiredBy.some(isNotTopOrExtraneous)
+  })
+&nbsp;
+  toplocs.concat(sortedlocs).forEach(function (location) {
+    sortByDeps(actions[location])
+  })
+&nbsp;
+  function sortByLocation (aa, bb) {
+    return bb.localeCompare(aa)
+  }
+  function sortModuleByLocation (aa, bb) {
+    return sortByLocation(aa &amp;&amp; aa.location, bb &amp;&amp; bb.location)
+  }
+  function sortByDeps (action) {
+    var mod = action[1]
+    if (added[mod.location]) return
+    added[mod.location] = action
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!mod.requiredBy) <span class="cstat-no" title="statement not covered" >mod.requiredBy = []</span>
+    mod.requiredBy.sort(sortModuleByLocation).forEach(function (mod) {
+      if (actions[mod.location]) sortByDeps(actions[mod.location])
+    })
+    sorted.unshift(action)
+  }
+&nbsp;
+  return sorted
+}
+&nbsp;
+function setAction (differences, action, pkg) {
+  differences.push([action, pkg])
+}
+&nbsp;
+var diffTrees = module.exports._diffTrees = function (oldTree, newTree) {
+  validate('OO', arguments)
+  var differences = []
+  var flatOldTree = flattenTree(oldTree)
+  var flatNewTree = flattenTree(newTree)
+  var toRemove = {}
+  var toRemoveByUniqueId = {}
+  // find differences
+  Object.keys(flatOldTree).forEach(function (flatname) {
+    if (flatNewTree[flatname]) return
+    var pkg = flatOldTree[flatname]
+    toRemove[flatname] = pkg
+    var pkgunique = getUniqueId(pkg.package)
+    if (!toRemoveByUniqueId[pkgunique]) toRemoveByUniqueId[pkgunique] = []
+    toRemoveByUniqueId[pkgunique].push(flatname)
+  })
+  Object.keys(flatNewTree).forEach(function (path) {
+    var pkg = flatNewTree[path]
+    pkg.oldPkg = flatOldTree[path]
+    pkg.isInLink = (pkg.oldPkg &amp;&amp; isLink(pkg.oldPkg.parent)) ||
+                   (pkg.parent &amp;&amp; isLink(pkg.parent)) ||
+                   requiredByAllLinked(pkg)
+    if (pkg.oldPkg) {
+      if (!pkg.userRequired &amp;&amp; pkgAreEquiv(pkg.oldPkg.package, pkg.package)) return
+      if (!pkg.isInLink &amp;&amp; (isLink(pkg.oldPkg) || isLink(pkg))) {
+        setAction(differences, 'update-linked', pkg)
+      } else {
+        setAction(differences, 'update', pkg)
+      }
+    } else {
+      var vername = getUniqueId(pkg.package)
+      var removing = toRemoveByUniqueId[vername] &amp;&amp; toRemoveByUniqueId[vername].length
+      var bundlesOrFromBundle = pkg.fromBundle || pkg.package.bundleDependencies
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (removing &amp;&amp; !bundlesOrFromBundle) {
+        var flatname = <span class="cstat-no" title="statement not covered" >toRemoveByUniqueId[vername].shift()</span>
+<span class="cstat-no" title="statement not covered" >        pkg.fromPath = toRemove[flatname].path</span>
+<span class="cstat-no" title="statement not covered" >        setAction(differences, 'move', pkg)</span>
+<span class="cstat-no" title="statement not covered" >        delete toRemove[flatname]</span>
+      } else {
+        setAction(differences, 'add', pkg)
+      }
+    }
+  })
+  Object
+    .keys(toRemove)
+    .map(function (path) { return toRemove[path] })
+    .forEach(function (pkg) {
+      setAction(differences, 'remove', pkg)
+    })
+  return differences
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

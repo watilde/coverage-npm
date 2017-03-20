@@ -1,0 +1,1424 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/utils/tar.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/utils</a> tar.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">81.36% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>192/236</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">79.71% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>165/207</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">74.29% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>26/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>174/200</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-yes">181x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1706x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">401x</span>
+<span class="cline-any cline-yes">35770x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34258x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32602x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31350x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30200x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30200x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31546x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31128x</span>
+<span class="cline-any cline-yes">31128x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30292x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">112x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30180x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7793x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7781x</span>
+<span class="cline-any cline-yes">6470x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1317x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1291x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1291x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1291x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1291x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1291x</span>
+<span class="cline-any cline-yes">840x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">451x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22387x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4458x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1706x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-yes">451x</span>
+<span class="cline-any cline-yes">451x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">441x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">440x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">440x</span>
+<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-yes">114x</span>
+<span class="cline-any cline-yes">114x</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">92x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">366x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-yes">26208x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26566x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26566x</span>
+<span class="cline-any cline-yes">26154x</span>
+<span class="cline-any cline-yes">26154x</span>
+<span class="cline-any cline-yes">647x</span>
+<span class="cline-any cline-yes">25507x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26566x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">354x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-yes">369x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// commands for packing and unpacking tarballs
+// this file is used by lib/cache.js
+&nbsp;
+var fs = require('graceful-fs')
+var path = require('path')
+var writeFileAtomic = require('write-file-atomic')
+var writeStreamAtomic = require('fs-write-stream-atomic')
+var log = require('npmlog')
+var uidNumber = require('uid-number')
+var readJson = require('read-package-json')
+var tar = require('tar')
+var zlib = require('zlib')
+var fstream = require('fstream')
+var Packer = require('fstream-npm')
+var iferr = require('iferr')
+var inherits = require('inherits')
+var npm = require('../npm.js')
+var rm = require('./gently-rm.js')
+var myUid = process.getuid &amp;&amp; process.getuid()
+var myGid = process.getgid &amp;&amp; process.getgid()
+var readPackageTree = require('read-package-tree')
+var union = require('lodash.union')
+var moduleName = require('./module-name.js')
+var packageId = require('./package-id.js')
+var pulseTillDone = require('../utils/pulse-till-done.js')
+&nbsp;
+<span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.SUDO_UID &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >myUid === 0)</span> {
+<span class="cstat-no" title="statement not covered" >  if (!isNaN(process.env.SUDO_UID)) <span class="cstat-no" title="statement not covered" >myUid = +process.env.SUDO_UID</span></span>
+<span class="cstat-no" title="statement not covered" >  if (!isNaN(process.env.SUDO_GID)) <span class="cstat-no" title="statement not covered" >myGid = +process.env.SUDO_GID</span></span>
+}
+&nbsp;
+exports.pack = pack
+exports.unpack = unpack
+&nbsp;
+function pack (tarball, folder, pkg, cb) {
+  log.verbose('tar pack', [tarball, folder])
+&nbsp;
+  log.verbose('tarball', tarball)
+  log.verbose('folder', folder)
+&nbsp;
+  readJson(path.join(folder, 'package.json'), function (er, pkg) {
+    if (er || !pkg.bundleDependencies) {
+      pack_(tarball, folder, null, pkg, cb)
+    } else {
+      // we require this at runtime due to load-order issues, because recursive
+      // requires fail if you replace the exports object, and we do, not in deps, but
+      // in a dep of it.
+      var recalculateMetadata = require('../install/deps.js').recalculateMetadata
+&nbsp;
+      readPackageTree(folder, pulseTillDone('pack:readTree:' + packageId(pkg), iferr(cb, function (tree) {
+        var recalcGroup = log.newGroup('pack:recalc:' + packageId(pkg))
+        recalculateMetadata(tree, recalcGroup, iferr(cb, function () {
+          recalcGroup.finish()
+          pack_(tarball, folder, tree, pkg, pulseTillDone('pack:' + packageId(pkg), cb))
+        }))
+      })))
+    }
+  })
+}
+&nbsp;
+function BundledPacker (props) {
+  Packer.call(this, props)
+}
+inherits(BundledPacker, Packer)
+&nbsp;
+BundledPacker.prototype.applyIgnores = function (entry, partial, entryObj) {
+  if (!entryObj || entryObj.type !== 'Directory') {
+    // package.json files can never be ignored.
+    if (entry === 'package.json') return true
+&nbsp;
+    // readme files should never be ignored.
+    if (entry.match(/^readme(\.[^\.]*)$/i)) return true
+&nbsp;
+    // license files should never be ignored.
+    if (entry.match(/^(license|licence)(\.[^\.]*)?$/i)) return true
+&nbsp;
+    // copyright notice files should never be ignored.
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (entry.match(/^(notice)(\.[^\.]*)?$/i)) <span class="cstat-no" title="statement not covered" >return true</span>
+&nbsp;
+    // changelogs should never be ignored.
+    if (entry.match(/^(changes|changelog|history)(\.[^\.]*)?$/i)) return true
+  }
+&nbsp;
+  // special rules.  see below.
+  if (entry === 'node_modules' &amp;&amp; this.packageRoot) return true
+&nbsp;
+  // package.json main file should never be ignored.
+  var mainFile = this.package &amp;&amp; this.package.main
+  if (mainFile &amp;&amp; path.resolve(this.path, entry) === path.resolve(this.path, mainFile)) return true
+&nbsp;
+  // some files are *never* allowed under any circumstances
+  // (VCS folders, native build cruft, npm cruft, regular cruft)
+  if (entry === '.git' ||
+      entry === 'CVS' ||
+      entry === '.svn' ||
+      entry === '.hg' ||
+      entry === '.lock-wscript' ||
+      entry.match(/^\.wafpickle-[0-9]+$/) ||
+      (this.parent &amp;&amp; this.parent.packageRoot &amp;&amp; this.basename === 'build' &amp;&amp;
+       entry === 'config.gypi') ||
+      entry === 'npm-debug.log' ||
+      entry === '.npmrc' ||
+      entry.match(/^\..*\.swp$/) ||
+      entry === '.DS_Store' ||
+      entry.match(/^\._/) ||
+      entry.match(/^.*\.orig$/)
+    ) {
+    return false
+  }
+&nbsp;
+  // in a node_modules folder, we only include bundled dependencies
+  // also, prevent packages in node_modules from being affected
+  // by rules set in the containing package, so that
+  // bundles don't get busted.
+  // Also, once in a bundle, everything is installed as-is
+  // To prevent infinite cycles in the case of cyclic deps that are
+  // linked with npm link, even in a bundle, deps are only bundled
+  // if they're not already present at a higher level.
+  if (this.bundleMagic) {
+    // bubbling up.  stop here and allow anything the bundled pkg allows
+    if (entry.charAt(0) === '@') {
+      var firstSlash = entry.indexOf('/')
+      // continue to list the packages in this scope
+      if (firstSlash === -1) return true
+&nbsp;
+      // bubbling up.  stop here and allow anything the bundled pkg allows
+      if (entry.indexOf('/', firstSlash + 1) !== -1) return true
+    // bubbling up.  stop here and allow anything the bundled pkg allows
+    } else if (entry.indexOf('/') !== -1) {
+      return true
+    }
+&nbsp;
+    // never include the .bin.  It's typically full of platform-specific
+    // stuff like symlinks and .cmd files anyway.
+    if (entry === '.bin') return false
+&nbsp;
+    // the package root.
+    var p = this.parent
+    // the directory before this one.
+    var pp = p &amp;&amp; p.parent
+    // the directory before that (if this is scoped)
+    if (pp &amp;&amp; pp.basename[0] === '@') pp = pp &amp;&amp; pp.parent
+&nbsp;
+    // if this entry has already been bundled, and is a symlink,
+    // and it is the *same* symlink as this one, then exclude it.
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (pp &amp;&amp; pp.bundleLinks &amp;&amp; this.bundleLinks &amp;&amp;
+        pp.bundleLinks[entry] &amp;&amp;
+        pp.bundleLinks[entry] === this.bundleLinks[entry]) {
+<span class="cstat-no" title="statement not covered" >      return false</span>
+    }
+&nbsp;
+    // since it's *not* a symbolic link, if we're *already* in a bundle,
+    // then we should include everything.
+    if (pp &amp;&amp; pp.package &amp;&amp; pp.basename === 'node_modules') {
+      return true
+    }
+&nbsp;
+    // only include it at this point if it's a bundleDependency
+    return this.isBundled(entry)
+  }
+  // if (this.bundled) return true
+&nbsp;
+  return Packer.prototype.applyIgnores.call(this, entry, partial, entryObj)
+}
+&nbsp;
+function nameMatch (name) { return function (other) { return name === moduleName(other) } }
+&nbsp;
+function pack_ (tarball, folder, tree, pkg, cb) {
+  function InstancePacker (props) {
+    BundledPacker.call(this, props)
+  }
+  inherits(InstancePacker, BundledPacker)
+  InstancePacker.prototype.isBundled = function (name) {
+    var bd = this.package &amp;&amp; this.package.bundleDependencies
+    if (!bd) return false
+&nbsp;
+    if (!Array.isArray(bd)) {
+      throw new Error(packageId(this) + '\'s `bundledDependencies` should ' +
+                      'be an array')
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!tree) <span class="cstat-no" title="statement not covered" >return false</span>
+&nbsp;
+    if (bd.indexOf(name) !== -1) return true
+    var pkg = tree.children.filter(nameMatch(name))[0]
+    if (!pkg) return false
+    var requiredBy = [].concat(pkg.requiredBy)
+    var seen = {}
+    while (requiredBy.length) {
+      var reqPkg = requiredBy.shift()
+      if (seen[reqPkg.path]) continue
+      seen[reqPkg.path] = true
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!reqPkg) <span class="cstat-no" title="statement not covered" >continue</span>
+      if (reqPkg.parent === tree &amp;&amp; bd.indexOf(moduleName(reqPkg)) !== -1) {
+        return true
+      }
+      requiredBy = union(requiredBy, reqPkg.requiredBy)
+    }
+    return false
+  }
+&nbsp;
+  new InstancePacker({ path: folder, type: 'Directory', isDirectory: true })
+    .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >      if (er) <span class="cstat-no" title="statement not covered" >log.error('tar pack', 'Error reading ' + folder)</span></span>
+<span class="cstat-no" title="statement not covered" >      return cb(er)</span>
+    })
+&nbsp;
+    // By default, npm includes some proprietary attributes in the
+    // package tarball.  This is sane, and allowed by the spec.
+    // However, npm *itself* excludes these from its own package,
+    // so that it can be more easily bootstrapped using old and
+    // non-compliant tar implementations.
+    .pipe(tar.Pack({ noProprietary: !npm.config.get('proprietary-attribs') }))
+    .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >      if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.pack', 'tar creation error', tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(er)</span>
+    })
+    .pipe(zlib.Gzip())
+    .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >      if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.pack', 'gzip error ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(er)</span>
+    })
+    .pipe(writeStreamAtomic(tarball))
+    .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >      if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.pack', 'Could not write ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(er)</span>
+    })
+    .on('close', cb)
+}
+&nbsp;
+function unpack (tarball, unpackTarget, dMode, fMode, uid, gid, cb) {
+  log.verbose('tar', 'unpack', tarball)
+  log.verbose('tar', 'unpacking to', unpackTarget)
+  if (typeof cb !== 'function') {
+    cb = gid
+    gid = null
+  }
+  if (typeof cb !== 'function') {
+    cb = uid
+    uid = null
+  }
+  if (typeof cb !== 'function') {
+    cb = fMode
+    fMode = npm.modes.file
+  }
+  if (typeof cb !== 'function') {
+    cb = dMode
+    dMode = npm.modes.exec
+  }
+&nbsp;
+  uidNumber(uid, gid, function (er, uid, gid) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return cb(er)</span>
+    unpack_(tarball, unpackTarget, dMode, fMode, uid, gid, cb)
+  })
+}
+&nbsp;
+function unpack_ (tarball, unpackTarget, dMode, fMode, uid, gid, cb) {
+  rm(unpackTarget, function (er) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return cb(er)</span>
+    // gzip {tarball} --decompress --stdout \
+    //   | tar -mvxpf - --strip-components=1 -C {unpackTarget}
+    gunzTarPerm(tarball, unpackTarget,
+                dMode, fMode,
+                uid, gid,
+                function (er, folder) {
+                  if (er) return cb(er)
+                  readJson(path.resolve(folder, 'package.json'), cb)
+                })
+  })
+}
+&nbsp;
+function gunzTarPerm (tarball, target, dMode, fMode, uid, gid, cb_) {
+  if (!dMode) dMode = npm.modes.exec
+  if (!fMode) fMode = npm.modes.file
+  log.silly('gunzTarPerm', 'modes', [dMode.toString(8), fMode.toString(8)])
+&nbsp;
+  var cbCalled = false
+  function cb (er) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (cbCalled) <span class="cstat-no" title="statement not covered" >return</span>
+    cbCalled = true
+    cb_(er, target)
+  }
+&nbsp;
+  var fst = fs.createReadStream(tarball)
+&nbsp;
+  fst.on('open', function (fd) {
+    fs.fstat(fd, function (er, st) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return fst.emit('error', er)</span>
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (st.size === 0) {
+<span class="cstat-no" title="statement not covered" >        er = new Error('0-byte tarball\n' +</span>
+                       'Please run `npm cache clean`')
+<span class="cstat-no" title="statement not covered" >        fst.emit('error', er)</span>
+      }
+    })
+  })
+&nbsp;
+  // figure out who we're supposed to be, if we're not pretending
+  // to be a specific user.
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (npm.config.get('unsafe-perm') &amp;&amp; process.platform !== 'win32') {
+    uid = myUid
+    gid = myGid
+  }
+&nbsp;
+  function extractEntry (entry) {
+    log.silly('gunzTarPerm', 'extractEntry', entry.path)
+    // never create things that are user-unreadable,
+    // or dirs that are user-un-listable. Only leads to headaches.
+    var originalMode = entry.mode = entry.mode || entry.props.mode
+    entry.mode = entry.mode | (entry.type === 'Directory' ? dMode : fMode)
+    entry.mode = entry.mode &amp; (~npm.modes.umask)
+    entry.props.mode = entry.mode
+    if (originalMode !== entry.mode) {
+      log.silly('gunzTarPerm', 'modified mode',
+                [entry.path, originalMode, entry.mode])
+    }
+&nbsp;
+    // if there's a specific owner uid/gid that we want, then set that
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (process.platform !== 'win32' &amp;&amp;
+        typeof uid === 'number' &amp;&amp;
+        typeof gid === 'number') {
+      entry.props.uid = entry.uid = uid
+      entry.props.gid = entry.gid = gid
+    }
+  }
+&nbsp;
+  var extractOpts = { type: 'Directory', path: target, strip: 1 }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (process.platform !== 'win32' &amp;&amp;
+      typeof uid === 'number' &amp;&amp;
+      typeof gid === 'number') {
+    extractOpts.uid = uid
+    extractOpts.gid = gid
+  }
+&nbsp;
+  var sawIgnores = {}
+  extractOpts.filter = function () {
+    // symbolic links are not allowed in packages.
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.type.match(/^.*Link$/)) {
+<span class="cstat-no" title="statement not covered" >      log.warn('excluding symbolic link',</span>
+               this.path.substr(target.length + 1) +
+               ' -&gt; ' + this.linkpath)
+<span class="cstat-no" title="statement not covered" >      return false</span>
+    }
+&nbsp;
+    // Note: This mirrors logic in the fs read operations that are
+    // employed during tarball creation, in the fstream-npm module.
+    // It is duplicated here to handle tarballs that are created
+    // using other means, such as system tar or git archive.
+    if (this.type === 'File') {
+      var base = path.basename(this.path)
+      if (base === '.npmignore') {
+        sawIgnores[ this.path ] = true
+      } else if (base === '.gitignore') {
+        var npmignore = this.path.replace(/\.gitignore$/, '.npmignore')
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (sawIgnores[npmignore]) {
+          // Skip this one, already seen.
+<span class="cstat-no" title="statement not covered" >          return false</span>
+        } else {
+          // Rename, may be clobbered later.
+          this.path = npmignore
+          this._path = npmignore
+        }
+      }
+    }
+&nbsp;
+    return true
+  }
+&nbsp;
+  fst
+    .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >      if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.unpack', 'error reading ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >      cb(er)</span>
+    })
+    .on('data', function OD (c) {
+      // detect what it is.
+      // Then, depending on that, we'll figure out whether it's
+      // a single-file module, gzipped tarball, or naked tarball.
+      // gzipped files all start with 1f8b08
+      if (c[0] === 0x1F &amp;&amp;
+          c[1] === 0x8B &amp;&amp;
+          c[2] === 0x08) {
+        fst
+          .pipe(zlib.Unzip())
+          .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >            if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.unpack', 'unzip error ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >            cb(er)</span>
+          })
+          .pipe(tar.Extract(extractOpts))
+          .on('entry', extractEntry)
+          .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >            if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.unpack', 'untar error ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >            cb(er)</span>
+          })
+          .on('close', cb)
+      } else if (hasTarHeader(c)) {
+        // naked tar
+        fst
+          .pipe(tar.Extract(extractOpts))
+          .on('entry', extractEntry)
+          .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >            if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.unpack', 'untar error ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >            cb(er)</span>
+          })
+          .on('close', cb)
+      } else {
+        // naked js file
+        var jsOpts = { path: path.resolve(target, 'index.js') }
+&nbsp;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (process.platform !== 'win32' &amp;&amp;
+            typeof uid === 'number' &amp;&amp;
+            typeof gid === 'number') {
+          jsOpts.uid = uid
+          jsOpts.gid = gid
+        }
+&nbsp;
+        fst
+          .pipe(fstream.Writer(jsOpts))
+          .on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (er) {
+<span class="cstat-no" title="statement not covered" >            if (er) <span class="cstat-no" title="statement not covered" >log.error('tar.unpack', 'copy error ' + tarball)</span></span>
+<span class="cstat-no" title="statement not covered" >            cb(er)</span>
+          })
+          .on('close', function () {
+            var j = path.resolve(target, 'package.json')
+            readJson(j, function (er, d) {
+              if (er) {
+                log.error('not a package', tarball)
+                return cb(er)
+              }
+              writeFileAtomic(j, JSON.stringify(d) + '\n', cb)
+            })
+          })
+      }
+&nbsp;
+      // now un-hook, and re-emit the chunk
+      fst.removeListener('data', OD)
+      fst.emit('data', c)
+    })
+}
+&nbsp;
+function hasTarHeader (c) {
+  return c[257] === 0x75 &amp;&amp; // tar archives have 7573746172 at position
+         c[258] === 0x73 &amp;&amp; // 257 and 003030 or 202000 at position 262
+         c[259] === 0x74 &amp;&amp;
+         c[260] === 0x61 &amp;&amp;
+         c[261] === 0x72 &amp;&amp;
+&nbsp;
+       ((c[262] === 0x00 &amp;&amp;
+         c[263] === 0x30 &amp;&amp;
+         c[264] === 0x30) ||
+&nbsp;
+        (<span class="branch-8 cbranch-no" title="branch not covered" >c[262] === 0x20 </span>&amp;&amp;
+<span class="branch-9 cbranch-no" title="branch not covered" >         c[263] === 0x20 </span>&amp;&amp;
+<span class="branch-10 cbranch-no" title="branch not covered" >         c[264] === 0x00)</span>)
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

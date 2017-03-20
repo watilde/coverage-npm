@@ -1,0 +1,2276 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/install.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> install.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.39% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>381/441</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75.95% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>120/158</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.52% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>77/89</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">89.22% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>364/408</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">221x</span>
+<span class="cline-any cline-yes">221x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-yes">130x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">217x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-yes">253x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">248x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">250x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">241x</span>
+<span class="cline-any cline-yes">766x</span>
+<span class="cline-any cline-yes">702x</span>
+<span class="cline-any cline-yes">702x</span>
+<span class="cline-any cline-yes">702x</span>
+<span class="cline-any cline-yes">710x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">702x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">230x</span>
+<span class="cline-any cline-yes">230x</span>
+<span class="cline-any cline-yes">223x</span>
+<span class="cline-any cline-yes">223x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">2223x</span>
+<span class="cline-any cline-yes">2223x</span>
+<span class="cline-any cline-yes">2223x</span>
+<span class="cline-any cline-yes">2223x</span>
+<span class="cline-any cline-yes">2223x</span>
+<span class="cline-any cline-yes">2143x</span>
+<span class="cline-any cline-yes">2143x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">2123x</span>
+<span class="cline-any cline-yes">2123x</span>
+<span class="cline-any cline-yes">2123x</span>
+<span class="cline-any cline-yes">2123x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-yes">108x</span>
+<span class="cline-any cline-yes">108x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">107x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">107x</span>
+<span class="cline-any cline-yes">104x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">215x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-yes">225x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-yes">7205x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7205x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">7205x</span>
+<span class="cline-any cline-yes">247x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">202x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">97x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">224x</span>
+<span class="cline-any cline-yes">197x</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-yes">93x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">96x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">234x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">233x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">242x</span>
+<span class="cline-any cline-yes">242x</span>
+<span class="cline-any cline-yes">242x</span>
+<span class="cline-any cline-yes">242x</span>
+<span class="cline-any cline-yes">242x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">239x</span>
+<span class="cline-any cline-yes">127x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">112x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">244x</span>
+<span class="cline-any cline-yes">244x</span>
+<span class="cline-any cline-yes">244x</span>
+<span class="cline-any cline-yes">244x</span>
+<span class="cline-any cline-yes">368x</span>
+<span class="cline-any cline-yes">36x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">244x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1125x</span>
+<span class="cline-any cline-yes">1125x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">562x</span>
+<span class="cline-any cline-yes">1137x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1118x</span>
+<span class="cline-any cline-yes">1118x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">249x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-yes">174x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">8944x</span>
+<span class="cline-any cline-yes">17888x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12805x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4661x</span>
+<span class="cline-any cline-yes">4661x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4213x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">454x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+// npm install &lt;pkg&gt; &lt;pkg&gt; &lt;pkg&gt;
+//
+// See doc/cli/npm-install.md for more description
+//
+// Managing contexts...
+// there's a lot of state associated with an "install" operation, including
+// packages that are already installed, parent packages, current shrinkwrap, and
+// so on. We maintain this state in a "context" object that gets passed around.
+// every time we dive into a deeper node_modules folder, the "family" list that
+// gets passed along uses the previous "family" list as its __proto__.  Any
+// "resolved precise dependency" things that aren't already on this object get
+// added, and then that's passed to the next generation of installation.
+&nbsp;
+module.exports = install
+module.exports.Installer = Installer
+&nbsp;
+var usage = require('./utils/usage')
+&nbsp;
+install.usage = usage(
+  'install',
+  '\nnpm install (with no args, in package dir)' +
+  '\nnpm install [&lt;@scope&gt;/]&lt;pkg&gt;' +
+  '\nnpm install [&lt;@scope&gt;/]&lt;pkg&gt;@&lt;tag&gt;' +
+  '\nnpm install [&lt;@scope&gt;/]&lt;pkg&gt;@&lt;version&gt;' +
+  '\nnpm install [&lt;@scope&gt;/]&lt;pkg&gt;@&lt;version range&gt;' +
+  '\nnpm install &lt;folder&gt;' +
+  '\nnpm install &lt;tarball file&gt;' +
+  '\nnpm install &lt;tarball url&gt;' +
+  '\nnpm install &lt;git:// url&gt;' +
+  '\nnpm install &lt;github username&gt;/&lt;github project&gt;',
+  '[--save|--save-dev|--save-optional] [--save-exact]'
+)
+&nbsp;
+install.completion = <span class="fstat-no" title="function not covered" >fu</span>nction (opts, cb) {
+<span class="cstat-no" title="statement not covered" >  validate('OF', arguments)</span>
+  // install can complete to a folder with a package.json, or any package.
+  // if it has a slash, then it's gotta be a folder
+  // if it starts with https?://, then just give up, because it's a url
+<span class="cstat-no" title="statement not covered" >  if (/^https?:\/\//.test(opts.partialWord)) {</span>
+    // do not complete to URLs
+<span class="cstat-no" title="statement not covered" >    return cb(null, [])</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (/\//.test(opts.partialWord)) {</span>
+    // Complete fully to folder if there is exactly one match and it
+    // is a folder containing a package.json file.  If that is not the
+    // case we return 0 matches, which will trigger the default bash
+    // complete.
+    var lastSlashIdx = <span class="cstat-no" title="statement not covered" >opts.partialWord.lastIndexOf('/')</span>
+    var partialName = <span class="cstat-no" title="statement not covered" >opts.partialWord.slice(lastSlashIdx + 1)</span>
+    var partialPath = <span class="cstat-no" title="statement not covered" >opts.partialWord.slice(0, lastSlashIdx)</span>
+<span class="cstat-no" title="statement not covered" >    if (partialPath === '') <span class="cstat-no" title="statement not covered" >partialPath = '/'</span></span>
+&nbsp;
+    var annotatePackageDirMatch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >fu</span>nction (sibling, cb) {</span>
+      var fullPath = <span class="cstat-no" title="statement not covered" >path.join(partialPath, sibling)</span>
+<span class="cstat-no" title="statement not covered" >      if (sibling.slice(0, partialName.length) !== partialName) {</span>
+<span class="cstat-no" title="statement not covered" >        return cb(null, null) </span>// not name match
+      }
+<span class="cstat-no" title="statement not covered" >      fs.readdir(fullPath, <span class="fstat-no" title="function not covered" >fu</span>nction (err, contents) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return cb(null, { isPackage: false })</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        cb(</span>
+          null,
+          {
+            fullPath: fullPath,
+            isPackage: contents.indexOf('package.json') !== -1
+          }
+        )
+      })
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return fs.readdir(partialPath, <span class="fstat-no" title="function not covered" >fu</span>nction (err, siblings) {</span>
+<span class="cstat-no" title="statement not covered" >      if (err) <span class="cstat-no" title="statement not covered" >return cb(null, []) </span></span>// invalid dir: no matching
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      asyncMap(siblings, annotatePackageDirMatch, <span class="fstat-no" title="function not covered" >fu</span>nction (err, matches) {</span>
+<span class="cstat-no" title="statement not covered" >        if (err) <span class="cstat-no" title="statement not covered" >return cb(err)</span></span>
+&nbsp;
+        var cleaned = <span class="cstat-no" title="statement not covered" >matches.filter(<span class="fstat-no" title="function not covered" >fu</span>nction (x) { <span class="cstat-no" title="statement not covered" >return x !== null </span>})</span>
+<span class="cstat-no" title="statement not covered" >        if (cleaned.length !== 1) <span class="cstat-no" title="statement not covered" >return cb(null, [])</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!cleaned[0].isPackage) <span class="cstat-no" title="statement not covered" >return cb(null, [])</span></span>
+&nbsp;
+        // Success - only one match and it is a package dir
+<span class="cstat-no" title="statement not covered" >        return cb(null, [cleaned[0].fullPath])</span>
+      })
+    })
+  }
+&nbsp;
+  // FIXME: there used to be registry completion here, but it stopped making
+  // sense somewhere around 50,000 packages on the registry
+<span class="cstat-no" title="statement not covered" >  cb()</span>
+}
+&nbsp;
+// system packages
+var fs = require('fs')
+var path = require('path')
+&nbsp;
+// dependencies
+var log = require('npmlog')
+var readPackageTree = require('read-package-tree')
+var chain = require('slide').chain
+var asyncMap = require('slide').asyncMap
+var archy = require('archy')
+var mkdirp = require('mkdirp')
+var rimraf = require('rimraf')
+var iferr = require('iferr')
+var validate = require('aproba')
+&nbsp;
+// npm internal utils
+var npm = require('./npm.js')
+var locker = require('./utils/locker.js')
+var lock = locker.lock
+var unlock = locker.unlock
+var ls = require('./ls.js')
+var parseJSON = require('./utils/parse-json.js')
+var output = require('./utils/output.js')
+var saveMetrics = require('./utils/metrics.js').save
+&nbsp;
+// install specific libraries
+var copyTree = require('./install/copy-tree.js')
+var readShrinkwrap = require('./install/read-shrinkwrap.js')
+var recalculateMetadata = require('./install/deps.js').recalculateMetadata
+var loadDeps = require('./install/deps.js').loadDeps
+var loadDevDeps = require('./install/deps.js').loadDevDeps
+var getAllMetadata = require('./install/deps.js').getAllMetadata
+var loadRequestedDeps = require('./install/deps.js').loadRequestedDeps
+var loadExtraneous = require('./install/deps.js').loadExtraneous
+var diffTrees = require('./install/diff-trees.js')
+var checkPermissions = require('./install/check-permissions.js')
+var decomposeActions = require('./install/decompose-actions.js')
+var filterInvalidActions = require('./install/filter-invalid-actions.js')
+var validateTree = require('./install/validate-tree.js')
+var validateArgs = require('./install/validate-args.js')
+var saveRequested = require('./install/save.js').saveRequested
+var getSaveType = require('./install/save.js').getSaveType
+var doSerialActions = require('./install/actions.js').doSerial
+var doReverseSerialActions = require('./install/actions.js').doReverseSerial
+var doParallelActions = require('./install/actions.js').doParallel
+var doOneAction = require('./install/actions.js').doOne
+var removeObsoleteDep = require('./install/deps.js').removeObsoleteDep
+var packageId = require('./utils/package-id.js')
+var moduleName = require('./utils/module-name.js')
+var errorMessage = require('./utils/error-message.js')
+var andIgnoreErrors = require('./install/and-ignore-errors.js')
+&nbsp;
+function unlockCB (lockPath, name, cb) {
+  validate('SSF', arguments)
+  return function (installEr) {
+    var args = arguments
+    try {
+      unlock(lockPath, name, reportErrorAndReturn)
+    } catch (unlockEx) {
+<span class="cstat-no" title="statement not covered" >      process.nextTick(<span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
+<span class="cstat-no" title="statement not covered" >        reportErrorAndReturn(unlockEx)</span>
+      })
+    }
+    function reportErrorAndReturn (unlockEr) {
+      if (installEr) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (unlockEr &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >unlockEr.code !== 'ENOTLOCKED')</span> {
+<span class="cstat-no" title="statement not covered" >          log.warn('unlock' + name, unlockEr)</span>
+        }
+        return cb.apply(null, args)
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (unlockEr) <span class="cstat-no" title="statement not covered" >return cb(unlockEr)</span>
+      return cb.apply(null, args)
+    }
+  }
+}
+&nbsp;
+function install (where, args, cb) {
+  if (!cb) {
+    cb = args
+    args = where
+    where = null
+  }
+  var globalTop = path.resolve(npm.globalDir, '..')
+  if (!where) {
+    where = npm.config.get('global')
+          ? globalTop
+          : npm.prefix
+  }
+  validate('SAF', [where, args, cb])
+  // the /path/to/node_modules/..
+  var dryrun = !!npm.config.get('dry-run')
+&nbsp;
+  if (npm.config.get('dev')) {
+    log.warn('install', 'Usage of the `--dev` option is deprecated. Use `--only=dev` instead.')
+  }
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (where === globalTop &amp;&amp; !args.length) {
+<span class="cstat-no" title="statement not covered" >    args = ['.']</span>
+  }
+  args = args.filter(function (a) {
+    return path.resolve(a) !== npm.prefix
+  })
+&nbsp;
+  new Installer(where, dryrun, args).run(cb)
+}
+&nbsp;
+function Installer (where, dryrun, args) {
+  validate('SBA', arguments)
+  this.where = where
+  this.dryrun = dryrun
+  this.args = args
+  this.currentTree = null
+  this.idealTree = null
+  this.differences = []
+  this.todo = []
+  this.progress = {}
+  this.noPackageJsonOk = !!args.length
+  this.topLevelLifecycles = !args.length
+  this.dev = npm.config.get('dev') || (!/^prod(uction)?$/.test(npm.config.get('only')) &amp;&amp; !npm.config.get('production')) || /^dev(elopment)?$/.test(npm.config.get('only'))
+  this.prod = !/^dev(elopment)?$/.test(npm.config.get('only'))
+  this.rollback = npm.config.get('rollback')
+  this.link = npm.config.get('link')
+  this.global = this.where === path.resolve(npm.globalDir, '..')
+}
+Installer.prototype = {}
+&nbsp;
+Installer.prototype.run = function (_cb) {
+  validate('F', arguments)
+&nbsp;
+  var cb = function (err) {
+    saveMetrics(!err)
+    return _cb.apply(this, arguments)
+  }
+&nbsp;
+  // FIXME: This is bad and I should feel bad.
+  // lib/install needs to have some way of sharing _limited_
+  // state with the things it calls. Passing the object is too
+  // much. The global config is WAY too much. =( =(
+  // But not having this is gonna break linked modules in
+  // subtle stupid ways, and refactoring all this code isn't
+  // the right thing to do just yet.
+  if (this.global) {
+    var prevGlobal = npm.config.get('global')
+    npm.config.set('global', true)
+    var next = cb
+    cb = function () {
+      npm.config.set('global', prevGlobal)
+      next.apply(null, arguments)
+    }
+  }
+&nbsp;
+  var installSteps = []
+  var postInstallSteps = []
+  installSteps.push(
+    [this.newTracker(log, 'loadCurrentTree', 4)],
+    [this, this.loadCurrentTree],
+    [this, this.finishTracker, 'loadCurrentTree'],
+&nbsp;
+    [this.newTracker(log, 'loadIdealTree', 12)],
+    [this, this.loadIdealTree],
+    [this, this.finishTracker, 'loadIdealTree'],
+&nbsp;
+    [this, this.debugTree, 'currentTree', 'currentTree'],
+    [this, this.debugTree, 'idealTree', 'idealTree'],
+&nbsp;
+    [this.newTracker(log, 'generateActionsToTake')],
+    [this, this.generateActionsToTake],
+    [this, this.finishTracker, 'generateActionsToTake'],
+&nbsp;
+    [this, this.debugActions, 'diffTrees', 'differences'],
+    [this, this.debugActions, 'decomposeActions', 'todo'])
+  if (!this.dryrun) {
+    installSteps.push(
+      [this.newTracker(log, 'runTopLevelLifecycles', 2)],
+      [this, this.runPreinstallTopLevelLifecycles],
+&nbsp;
+      [this.newTracker(log, 'executeActions', 8)],
+      [this, this.executeActions],
+      [this, this.finishTracker, 'executeActions'])
+    var node_modules = path.resolve(this.where, 'node_modules')
+    var staging = path.resolve(node_modules, '.staging')
+    postInstallSteps.push(
+      [this.newTracker(log, 'rollbackFailedOptional', 1)],
+      [this, this.rollbackFailedOptional, staging, this.todo],
+      [this, this.finishTracker, 'rollbackFailedOptional'],
+      [this, this.commit, staging, this.todo],
+&nbsp;
+      [this, this.runPostinstallTopLevelLifecycles],
+      [this, this.finishTracker, 'runTopLevelLifecycles'])
+    if (getSaveType(this.args)) {
+      postInstallSteps.push(
+        [this, this.saveToDependencies])
+    }
+  }
+  postInstallSteps.push(
+    [this, this.printInstalled])
+&nbsp;
+  var self = this
+  chain(installSteps, function (installEr) {
+    if (installEr) self.failing = true
+    chain(postInstallSteps, function (postInstallEr) {
+      if (self.idealTree) {
+        self.idealTree.warnings.forEach(function (warning) {
+          if (warning.code === 'EPACKAGEJSON' &amp;&amp; self.global) return
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (warning.code === 'ENOTDIR') <span class="cstat-no" title="statement not covered" >return</span>
+          var output = errorMessage(warning)
+          output.summary.forEach(function (logline) {
+            log.warn.apply(log, logline)
+          })
+          output.detail.forEach(function (logline) {
+            log.verbose.apply(log, logline)
+          })
+        })
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (installEr &amp;&amp; postInstallEr) {
+        var msg = <span class="cstat-no" title="statement not covered" >errorMessage(postInstallEr)</span>
+<span class="cstat-no" title="statement not covered" >        msg.summary.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction (logline) {</span>
+<span class="cstat-no" title="statement not covered" >          log.warn.apply(log, logline)</span>
+        })
+<span class="cstat-no" title="statement not covered" >        msg.detail.forEach(<span class="fstat-no" title="function not covered" >fu</span>nction (logline) {</span>
+<span class="cstat-no" title="statement not covered" >          log.verbose.apply(log, logline)</span>
+        })
+      }
+      cb(installEr || postInstallEr, self.getInstalledModules(), self.idealTree)
+    })
+  })
+}
+&nbsp;
+Installer.prototype.loadArgMetadata = function (next) {
+  var self = this
+  getAllMetadata(this.args, this.currentTree, process.cwd(), iferr(next, function (args) {
+    self.args = args
+    next()
+  }))
+}
+&nbsp;
+Installer.prototype.newTracker = function (tracker, name, size) {
+  validate('OS', [tracker, name])
+  if (size) validate('N', [size])
+  this.progress[name] = tracker.newGroup(name, size)
+  var self = this
+  return function (next) {
+    self.progress[name].silly(name, 'Starting')
+    next()
+  }
+}
+&nbsp;
+Installer.prototype.finishTracker = function (name, cb) {
+  validate('SF', arguments)
+  this.progress[name].silly(name, 'Finishing')
+  this.progress[name].finish()
+  cb()
+}
+&nbsp;
+Installer.prototype.loadCurrentTree = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'loadCurrentTree')
+  var todo = []
+  if (this.global) {
+    todo.push([this, this.readGlobalPackageData])
+  } else {
+    todo.push([this, this.readLocalPackageData])
+  }
+  todo.push(
+    [this, this.normalizeTree, log.newGroup('normalizeTree')])
+  chain(todo, cb)
+}
+&nbsp;
+Installer.prototype.loadIdealTree = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'loadIdealTree')
+&nbsp;
+  chain([
+    [this.newTracker(this.progress.loadIdealTree, 'cloneCurrentTree')],
+    [this, this.cloneCurrentTreeToIdealTree],
+    [this, this.finishTracker, 'cloneCurrentTree'],
+&nbsp;
+    [this.newTracker(this.progress.loadIdealTree, 'loadShrinkwrap')],
+    [this, this.loadShrinkwrap],
+    [this, this.finishTracker, 'loadShrinkwrap'],
+&nbsp;
+    [this.newTracker(this.progress.loadIdealTree, 'loadAllDepsIntoIdealTree', 10)],
+    [this, this.loadAllDepsIntoIdealTree],
+    [this, this.finishTracker, 'loadAllDepsIntoIdealTree'],
+&nbsp;
+    // TODO: Remove this (should no longer be necessary, instead counter productive)
+    [this, function (next) { recalculateMetadata(this.idealTree, log, next) }]
+  ], cb)
+}
+&nbsp;
+Installer.prototype.loadAllDepsIntoIdealTree = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'loadAllDepsIntoIdealTree')
+  var saveDeps = getSaveType(this.args)
+&nbsp;
+  var cg = this.progress.loadAllDepsIntoIdealTree
+  var installNewModules = !!this.args.length
+  var steps = []
+&nbsp;
+  if (installNewModules) {
+    steps.push([validateArgs, this.idealTree, this.args])
+    steps.push([loadRequestedDeps, this.args, this.idealTree, saveDeps, cg.newGroup('loadRequestedDeps')])
+  } else {
+    if (this.prod) {
+      steps.push(
+        [loadDeps, this.idealTree, cg.newGroup('loadDeps')])
+    }
+    if (this.dev) {
+      steps.push(
+        [loadDevDeps, this.idealTree, cg.newGroup('loadDevDeps')])
+    }
+  }
+  steps.push(
+    [loadExtraneous.andResolveDeps, this.idealTree, cg.newGroup('loadExtraneous')])
+  chain(steps, cb)
+}
+&nbsp;
+Installer.prototype.generateActionsToTake = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'generateActionsToTake')
+  var cg = this.progress.generateActionsToTake
+  chain([
+    [validateTree, this.idealTree, cg.newGroup('validateTree')],
+    [diffTrees, this.currentTree, this.idealTree, this.differences, cg.newGroup('diffTrees')],
+    [this, this.computeLinked],
+    [filterInvalidActions, this.where, this.differences],
+    [checkPermissions, this.differences],
+    [decomposeActions, this.differences, this.todo]
+  ], cb)
+}
+&nbsp;
+Installer.prototype.computeLinked = function (cb) {
+  validate('F', arguments)
+  if (!this.link || this.global) return cb()
+  var linkTodoList = []
+  var self = this
+  asyncMap(this.differences, function (action, next) {
+    var cmd = action[0]
+    var pkg = action[1]
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (cmd !== 'add' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >cmd !== 'update')</span> <span class="cstat-no" title="statement not covered" >return next()</span>
+    var isReqByTop = pkg.requiredBy.filter(function (mod) { return mod.isTop }).length
+    var isReqByUser = pkg.userRequired
+    var isExtraneous = pkg.requiredBy.length === 0
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isReqByTop &amp;&amp; !isReqByUser &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >!isExtraneous)</span> <span class="cstat-no" title="statement not covered" >return next()</span>
+    isLinkable(pkg, function (install, link) {
+      if (install) linkTodoList.push(['global-install', pkg])
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (link) linkTodoList.push(['global-link', pkg])
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (install || link) removeObsoleteDep(pkg)
+      next()
+    })
+  }, function () {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (linkTodoList.length === 0) <span class="cstat-no" title="statement not covered" >return cb()</span>
+    self.differences.length = 0
+    Array.prototype.push.apply(self.differences, linkTodoList)
+    diffTrees(self.currentTree, self.idealTree, self.differences, log.newGroup('d2'), cb)
+  })
+}
+&nbsp;
+function isLinkable (pkg, cb) {
+  var globalPackage = path.resolve(npm.globalPrefix, 'lib', 'node_modules', moduleName(pkg))
+  var globalPackageJson = path.resolve(globalPackage, 'package.json')
+  fs.stat(globalPackage, function (er) {
+    if (er) return cb(true, true)
+    fs.readFile(globalPackageJson, function (er, data) {
+      var json = parseJSON.noExceptions(data)
+      cb(false, json &amp;&amp; json.version === pkg.package.version)
+    })
+  })
+}
+&nbsp;
+Installer.prototype.executeActions = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'executeActions')
+  var todo = this.todo
+  var cg = this.progress.executeActions
+&nbsp;
+  var node_modules = path.resolve(this.where, 'node_modules')
+  var staging = path.resolve(node_modules, '.staging')
+  var steps = []
+  var trackLifecycle = cg.newGroup('lifecycle')
+&nbsp;
+  cb = unlockCB(node_modules, '.staging', cb)
+&nbsp;
+  steps.push(
+    [doSerialActions, 'global-install', staging, todo, trackLifecycle.newGroup('global-install')],
+    [doParallelActions, 'fetch', staging, todo, cg.newGroup('fetch', 10)],
+    [lock, node_modules, '.staging'],
+    [rimraf, staging],
+    [mkdirp, staging],
+    [doParallelActions, 'extract', staging, todo, cg.newGroup('extract', 10)],
+    [doParallelActions, 'preinstall', staging, todo, trackLifecycle.newGroup('preinstall')],
+    [doReverseSerialActions, 'remove', staging, todo, cg.newGroup('remove')],
+    [doSerialActions, 'move', staging, todo, cg.newGroup('move')],
+    [doSerialActions, 'finalize', staging, todo, cg.newGroup('finalize')],
+    [doSerialActions, 'build', staging, todo, trackLifecycle.newGroup('build')],
+    [doSerialActions, 'global-link', staging, todo, trackLifecycle.newGroup('global-link')],
+    [doParallelActions, 'update-linked', staging, todo, trackLifecycle.newGroup('update-linked')],
+    [doSerialActions, 'install', staging, todo, trackLifecycle.newGroup('install')],
+    [doSerialActions, 'postinstall', staging, todo, trackLifecycle.newGroup('postinstall')])
+&nbsp;
+  var self = this
+  chain(steps, function (er) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!er || self.rollback) {
+      rimraf(staging, function () { cb(er) })
+    } else {
+<span class="cstat-no" title="statement not covered" >      cb(er)</span>
+    }
+  })
+}
+&nbsp;
+Installer.prototype.rollbackFailedOptional = function (staging, actionsToRun, cb) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.rollback) <span class="cstat-no" title="statement not covered" >return cb()</span>
+  var failed = actionsToRun.map(function (action) {
+    return action[1]
+  }).filter(function (pkg) {
+    return pkg.failed &amp;&amp; pkg.rollback
+  })
+  var top = this.currentTree &amp;&amp; this.currentTree.path
+  asyncMap(failed, function (pkg, next) {
+    asyncMap(pkg.rollback, function (rollback, done) {
+      rollback(top, staging, pkg, done)
+    }, next)
+  }, cb)
+}
+&nbsp;
+Installer.prototype.commit = function (staging, actionsToRun, cb) {
+  var toCommit = actionsToRun.map(function (action) { return action[1] }).filter(function (pkg) { return !pkg.failed &amp;&amp; pkg.commit })
+  asyncMap(toCommit, <span class="fstat-no" title="function not covered" >fu</span>nction (pkg, next) {
+<span class="cstat-no" title="statement not covered" >    asyncMap(pkg.commit, <span class="fstat-no" title="function not covered" >fu</span>nction (commit, done) {</span>
+<span class="cstat-no" title="statement not covered" >      commit(staging, pkg, done)</span>
+    }, <span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >      pkg.commit = []</span>
+<span class="cstat-no" title="statement not covered" >      next.apply(null, arguments)</span>
+    })
+  }, cb)
+}
+&nbsp;
+Installer.prototype.runPreinstallTopLevelLifecycles = function (cb) {
+  validate('F', arguments)
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (this.failing) <span class="cstat-no" title="statement not covered" >return cb()</span>
+  if (!this.topLevelLifecycles) return cb()
+  log.silly('install', 'runPreinstallTopLevelLifecycles')
+  var steps = []
+  var trackLifecycle = this.progress.runTopLevelLifecycles
+&nbsp;
+  steps.push(
+    [doOneAction, 'preinstall', this.idealTree.path, this.idealTree, trackLifecycle.newGroup('preinstall:.')]
+  )
+  chain(steps, cb)
+}
+&nbsp;
+Installer.prototype.runPostinstallTopLevelLifecycles = function (cb) {
+  validate('F', arguments)
+  if (this.failing) return cb()
+  if (!this.topLevelLifecycles) return cb()
+  log.silly('install', 'runPostinstallTopLevelLifecycles')
+  var steps = []
+  var trackLifecycle = this.progress.runTopLevelLifecycles
+&nbsp;
+  steps.push(
+    [doOneAction, 'build', this.idealTree.path, this.idealTree, trackLifecycle.newGroup('build:.')],
+    [doOneAction, 'install', this.idealTree.path, this.idealTree, trackLifecycle.newGroup('install:.')],
+    [doOneAction, 'postinstall', this.idealTree.path, this.idealTree, trackLifecycle.newGroup('postinstall:.')])
+  if (this.dev) {
+    steps.push(
+      [doOneAction, 'prepare', this.idealTree.path, this.idealTree, trackLifecycle.newGroup('prepare')])
+  }
+  chain(steps, cb)
+}
+&nbsp;
+Installer.prototype.saveToDependencies = function (cb) {
+  validate('F', arguments)
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (this.failing) <span class="cstat-no" title="statement not covered" >return cb()</span>
+  log.silly('install', 'saveToDependencies')
+  saveRequested(this.args, this.idealTree, cb)
+}
+&nbsp;
+Installer.prototype.readGlobalPackageData = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'readGlobalPackageData')
+  var self = this
+  this.loadArgMetadata(iferr(cb, function () {
+    mkdirp(self.where, iferr(cb, function () {
+      var pkgs = {}
+      self.args.forEach(function (pkg) {
+        pkgs[pkg.name] = true
+      })
+      readPackageTree(self.where, function (ctx, kid) { return ctx.parent || pkgs[kid] }, iferr(cb, function (currentTree) {
+        self.currentTree = currentTree
+        return cb()
+      }))
+    }))
+  }))
+}
+&nbsp;
+Installer.prototype.readLocalPackageData = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'readLocalPackageData')
+  var self = this
+  mkdirp(this.where, iferr(cb, function () {
+    readPackageTree(self.where, iferr(cb, function (currentTree) {
+      self.currentTree = currentTree
+      self.currentTree.warnings = []
+      if (currentTree.error &amp;&amp; currentTree.error.code === 'EJSONPARSE') {
+        return cb(currentTree.error)
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!self.noPackageJsonOk &amp;&amp; !currentTree.package) {
+<span class="cstat-no" title="statement not covered" >        log.error('install', "Couldn't read dependencies")</span>
+        var er = <span class="cstat-no" title="statement not covered" >new Error("ENOENT, open '" + path.join(self.where, 'package.json') + "'")</span>
+<span class="cstat-no" title="statement not covered" >        er.code = 'ENOPACKAGEJSON'</span>
+<span class="cstat-no" title="statement not covered" >        er.errno = 34</span>
+<span class="cstat-no" title="statement not covered" >        return cb(er)</span>
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!currentTree.package) <span class="cstat-no" title="statement not covered" >currentTree.package = {}</span>
+      readShrinkwrap(currentTree, function (err) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >          cb(err)</span>
+        } else {
+          self.loadArgMetadata(cb)
+        }
+      })
+    }))
+  }))
+}
+&nbsp;
+Installer.prototype.cloneCurrentTreeToIdealTree = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'cloneCurrentTreeToIdealTree')
+  this.idealTree = copyTree(this.currentTree)
+  this.idealTree.warnings = []
+  cb()
+}
+&nbsp;
+Installer.prototype.loadShrinkwrap = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'loadShrinkwrap')
+  var installNewModules = !!this.args.length
+  if (installNewModules) {
+    readShrinkwrap(this.idealTree, cb)
+  } else {
+    readShrinkwrap.andInflate(this.idealTree, cb)
+  }
+}
+&nbsp;
+Installer.prototype.normalizeTree = function (log, cb) {
+  validate('OF', arguments)
+  log.silly('install', 'normalizeTree')
+  recalculateMetadata(this.currentTree, log, iferr(cb, function (tree) {
+    tree.children.forEach(function (child) {
+      if (child.requiredBy.length === 0) {
+        child.existing = true
+      }
+    })
+    cb(null, tree)
+  }))
+}
+&nbsp;
+Installer.prototype.getInstalledModules = function () {
+  return this.differences.filter(function (action) {
+    var mutation = action[0]
+    return (mutation === 'add' || mutation === 'update')
+  }).map(function (action) {
+    var child = action[1]
+    return [child.package._id, child.path]
+  })
+}
+&nbsp;
+Installer.prototype.printInstalled = function (cb) {
+  validate('F', arguments)
+  log.silly('install', 'printInstalled')
+  var self = this
+  this.differences.forEach(function (action) {
+    var mutation = action[0]
+    var child = action[1]
+    var name = packageId(child)
+    var where = path.relative(self.where, child.path)
+    if (mutation === 'remove') {
+      output('- ' + name + ' ' + where)
+    } else if (mutation === 'move') {
+      var oldWhere = path.relative(self.where, child.fromPath)
+      output(name + ' ' + oldWhere + ' -&gt; ' + where)
+    }
+  })
+  var addedOrMoved = this.differences.filter(function (action) {
+    var mutation = action[0]
+    var child = action[1]
+    return !child.failed &amp;&amp; (mutation === 'add' || mutation === 'update')
+  }).map(function (action) {
+    var child = action[1]
+    return child.path
+  })
+  if (!addedOrMoved.length) return cb()
+  // TODO: remove the recalculateMetadata, should not be needed
+  recalculateMetadata(this.idealTree, log, iferr(cb, function (tree) {
+    // These options control both how installs happen AND how `ls` shows output.
+    // Something like `npm install --production` only installs production deps.
+    // By contrast `npm install --production foo` installs `foo` and the
+    // `production` option is ignored. But when it comes time for `ls` to show
+    // its output, it excludes the thing we just installed because that flag.
+    // The summary output we get should be unfiltered, showing everything
+    // installed, so we clear these options before calling `ls`.
+    npm.config.set('production', false)
+    npm.config.set('dev', false)
+    npm.config.set('only', '')
+    npm.config.set('also', '')
+    ls.fromTree(self.where, tree, addedOrMoved, false, andIgnoreErrors(cb))
+  }))
+}
+&nbsp;
+Installer.prototype.debugActions = function (name, actionListName, cb) {
+  validate('SSF', arguments)
+  var actionsToLog = this[actionListName]
+  log.silly(name, 'action count', actionsToLog.length)
+  actionsToLog.forEach(function (action) {
+    log.silly(name, action.map(function (value) {
+      return (value &amp;&amp; value.package) ? packageId(value) : value
+    }).join(' '))
+  })
+  cb()
+}
+&nbsp;
+// This takes an object and a property name instead of a value to allow us
+// to define the arguments for use by chain before the property exists yet.
+Installer.prototype.debugTree = function (name, treeName, cb) {
+  validate('SSF', arguments)
+  log.silly(name, this.prettify(this[treeName]).trim())
+  cb()
+}
+&nbsp;
+Installer.prototype.prettify = function (tree) {
+  validate('O', arguments)
+  var seen = {}
+  function byName (aa, bb) {
+    return packageId(aa).localeCompare(packageId(bb))
+  }
+  function expandTree (tree) {
+    seen[tree.path] = true
+    return {
+      label: packageId(tree),
+      nodes: tree.children.filter(function (tree) { return !seen[tree.path] }).sort(byName).map(expandTree)
+    }
+  }
+  return archy(expandTree(tree), '', { unicode: npm.config.get('unicode') })
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

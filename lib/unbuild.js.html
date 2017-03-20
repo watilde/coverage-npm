@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/unbuild.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">lib</a> unbuild.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.06% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>59/67</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.11% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>31/36</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.86% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>13/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.3% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>55/63</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</td><td class="line-coverage quiet"><span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">904x</span>
+<span class="cline-any cline-yes">574x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">1156x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">578x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">577x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">69x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = unbuild
+module.exports.rmStuff = rmStuff
+unbuild.usage = 'npm unbuild &lt;folder&gt;\n(this is plumbing)'
+&nbsp;
+var readJson = require('read-package-json')
+var gentlyRm = require('./utils/gently-rm.js')
+var npm = require('./npm.js')
+var path = require('path')
+var isInside = require('path-is-inside')
+var lifecycle = require('./utils/lifecycle.js')
+var asyncMap = require('slide').asyncMap
+var chain = require('slide').chain
+var log = require('npmlog')
+var build = require('./build.js')
+var output = require('./utils/output.js')
+&nbsp;
+// args is a list of folders.
+// remove any bins/etc, and then delete the folder.
+function unbuild (args, silent, cb) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof silent === 'function') {
+<span class="cstat-no" title="statement not covered" >    cb = silent</span>
+<span class="cstat-no" title="statement not covered" >    silent = false</span>
+  }
+  asyncMap(args, unbuild_(silent), cb)
+}
+&nbsp;
+function unbuild_ (silent) {
+  return function (folder, cb_) {
+    function cb (er) {
+      cb_(er, path.relative(npm.root, folder))
+    }
+    folder = path.resolve(folder)
+    var base = isInside(folder, npm.prefix) ? npm.prefix : folder
+    delete build._didBuild[folder]
+    log.verbose('unbuild', folder.substr(npm.prefix.length + 1))
+    readJson(path.resolve(folder, 'package.json'), function (er, pkg) {
+      // if no json, then just trash it, but no scripts or whatever.
+      if (er) return gentlyRm(folder, false, base, cb)
+      chain(
+        [
+          [lifecycle, pkg, 'preuninstall', folder, false, true],
+          [lifecycle, pkg, 'uninstall', folder, false, true],
+          !silent &amp;&amp; <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >fu</span>nction (cb) {</span>
+<span class="cstat-no" title="statement not covered" >            output('unbuild ' + pkg._id)</span>
+<span class="cstat-no" title="statement not covered" >            cb()</span>
+          },
+          [rmStuff, pkg, folder],
+          [lifecycle, pkg, 'postuninstall', folder, false, true],
+          [gentlyRm, folder, false, base]
+        ],
+        cb
+      )
+    })
+  }
+}
+&nbsp;
+function rmStuff (pkg, folder, cb) {
+  // if it's global, and folder is in {prefix}/node_modules,
+  // then bins are in {prefix}/bin
+  // otherwise, then bins are in folder/../.bin
+  var parent = pkg.name[0] === '@' ? path.dirname(path.dirname(folder)) : path.dirname(folder)
+  var gnm = npm.dir
+  var top = gnm === parent
+&nbsp;
+  log.verbose('unbuild rmStuff', pkg._id, 'from', gnm)
+  if (!top) log.verbose('unbuild rmStuff', 'in', parent)
+  asyncMap([rmBins, rmMans], function (fn, cb) {
+    fn(pkg, folder, parent, top, cb)
+  }, cb)
+}
+&nbsp;
+function rmBins (pkg, folder, parent, top, cb) {
+  if (!pkg.bin) return cb()
+  var binRoot = top ? npm.bin : path.resolve(parent, '.bin')
+  asyncMap(Object.keys(pkg.bin), function (b, cb) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (process.platform === 'win32') {
+<span class="cstat-no" title="statement not covered" >      chain([ [gentlyRm, path.resolve(binRoot, b) + '.cmd', true, folder],</span>
+              [gentlyRm, path.resolve(binRoot, b), true, folder] ], cb)
+    } else {
+      gentlyRm(path.resolve(binRoot, b), true, folder, cb)
+    }
+  }, gentlyRmBinRoot)
+&nbsp;
+  function gentlyRmBinRoot (err) {
+    if (err || top) return cb(err)
+    return gentlyRm(binRoot, true, parent, cb)
+  }
+}
+&nbsp;
+function rmMans (pkg, folder, parent, top, cb) {
+  if (!pkg.man ||
+      !top ||
+      process.platform === 'win32' ||
+      !npm.config.get('global')) {
+    return cb()
+  }
+  var manRoot = path.resolve(npm.config.get('prefix'), 'share', 'man')
+  log.verbose('rmMans', 'man files are', pkg.man, 'in', manRoot)
+  asyncMap(pkg.man, function (man, cb) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (Array.isArray(man)) {
+<span class="cstat-no" title="statement not covered" >      man.forEach(rmMan)</span>
+    } else {
+      rmMan(man)
+    }
+&nbsp;
+    function rmMan (man) {
+      log.silly('rmMan', 'preparing to remove', man)
+      var parseMan = man.match(/(.*\.([0-9]+)(\.gz)?)$/)
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!parseMan) {
+<span class="cstat-no" title="statement not covered" >        log.error(</span>
+          'rmMan', man, 'is not a valid name for a man file.',
+          'Man files must end with a number, ' +
+          'and optionally a .gz suffix if they are compressed.'
+        )
+<span class="cstat-no" title="statement not covered" >        return cb()</span>
+      }
+&nbsp;
+      var stem = parseMan[1]
+      var sxn = parseMan[2]
+      var gz = parseMan[3] || ''
+      var bn = path.basename(stem)
+      var manDest = path.join(
+        manRoot,
+        'man' + sxn,
+        (bn.indexOf(pkg.name) === 0 ? bn : pkg.name + '-' + bn) + '.' + sxn + gz
+      )
+      gentlyRm(manDest, true, cb)
+    }
+  }, cb)
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

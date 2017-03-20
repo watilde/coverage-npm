@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/search/all-package-metadata.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/search</a> all-package-metadata.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">87.9% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>138/157</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">80.56% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>58/72</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.43% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>32/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">91.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>133/146</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+&nbsp;
+var fs = require('graceful-fs')
+var path = require('path')
+var mkdir = require('mkdirp')
+var chownr = require('chownr')
+var npm = require('../npm.js')
+var log = require('npmlog')
+var cacheFile = require('npm-cache-filename')
+var getCacheStat = require('../cache/get-stat.js')
+var mapToRegistry = require('../utils/map-to-registry.js')
+var jsonstream = require('JSONStream')
+var writeStreamAtomic = require('fs-write-stream-atomic')
+var ms = require('mississippi')
+var sortedUnionStream = require('sorted-union-stream')
+var once = require('once')
+var gunzip = require('../utils/gunzip-maybe')
+&nbsp;
+// Returns a sorted stream of all package metadata. Internally, takes care of
+// maintaining its metadata cache and making partial or full remote requests,
+// according to staleness, validity, etc.
+//
+// The local cache must hold certain invariants:
+// 1. It must be a proper JSON object
+// 2. It must have its keys lexically sorted
+// 3. The first entry must be `_updated` with a millisecond timestamp as a val.
+// 4. It must include all entries that exist in the metadata endpoint as of
+//    the value in `_updated`
+module.exports = allPackageMetadata
+function allPackageMetadata (staleness) {
+  var stream = ms.through.obj()
+&nbsp;
+  mapToRegistry('-/all', npm.config, function (er, uri, auth) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return stream.emit('error', er)</span>
+&nbsp;
+    var cacheBase = cacheFile(npm.config.get('cache'))(uri)
+    var cachePath = path.join(cacheBase, '.cache.json')
+&nbsp;
+    createEntryStream(cachePath, uri, auth, staleness, function (err, entryStream, latest, newEntries) {
+      if (err) return stream.emit('error', err)
+      log.silly('all-package-metadata', 'entry stream created')
+      if (entryStream &amp;&amp; newEntries) {
+        createCacheWriteStream(cachePath, latest, function (err, writeStream) {
+          <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return stream.emit('error', err)</span>
+          log.silly('all-package-metadata', 'output stream created')
+          ms.pipeline.obj(entryStream, writeStream, stream)
+        })
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (entryStream) {
+        ms.pipeline.obj(entryStream, stream)
+      } else {
+<span class="cstat-no" title="statement not covered" >        stream.emit('error', new Error('No search sources available'))</span>
+      }
+    })
+  })
+  return stream
+}
+&nbsp;
+// Creates a stream of the latest available package metadata.
+// Metadata will come from a combination of the local cache and remote data.
+module.exports._createEntryStream = createEntryStream
+function createEntryStream (cachePath, uri, auth, staleness, cb) {
+  createCacheEntryStream(cachePath, function (err, cacheStream, cacheLatest) {
+    cacheLatest = cacheLatest || 0
+    if (err) {
+      log.warn('', 'Failed to read search cache. Rebuilding')
+      log.silly('all-package-metadata', 'cache read error: ', err)
+    }
+    createEntryUpdateStream(uri, auth, staleness, cacheLatest, function (err, updateStream, updatedLatest) {
+      updatedLatest = updatedLatest || 0
+      var latest = updatedLatest || cacheLatest
+      if (!cacheStream &amp;&amp; !updateStream) {
+        return cb(new Error('No search sources available'))
+      }
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (err) {
+<span class="cstat-no" title="statement not covered" >        log.warn('', 'Search data request failed, search might be stale')</span>
+<span class="cstat-no" title="statement not covered" >        log.silly('all-package-metadata', 'update request error: ', err)</span>
+      }
+      if (cacheStream &amp;&amp; updateStream) {
+        // Deduped, unioned, sorted stream from the combination of both.
+        cb(null,
+          createMergedStream(cacheStream, updateStream),
+          latest,
+          !!updatedLatest)
+      } else {
+        // Either one works if one or the other failed
+        cb(null, cacheStream || updateStream, latest, !!updatedLatest)
+      }
+    })
+  })
+}
+&nbsp;
+// Merges `a` and `b` into one stream, dropping duplicates in favor of entries
+// in `b`. Both input streams should already be individually sorted, and the
+// returned output stream will have semantics resembling the merge step of a
+// plain old merge sort.
+module.exports._createMergedStream = createMergedStream
+function createMergedStream (a, b) {
+  linkStreams(a, b)
+  return sortedUnionStream(b, a, function (pkg) { return pkg.name })
+}
+&nbsp;
+// Reads the local index and returns a stream that spits out package data.
+module.exports._createCacheEntryStream = createCacheEntryStream
+function createCacheEntryStream (cacheFile, cb) {
+  log.verbose('all-package-metadata', 'creating entry stream from local cache')
+  log.verbose('all-package-metadata', cacheFile)
+  fs.stat(cacheFile, function (err, stat) {
+    if (err) return cb(err)
+    // TODO - This isn't very helpful if `cacheFile` is empty or just `{}`
+    var entryStream = ms.pipeline.obj(
+      fs.createReadStream(cacheFile),
+      jsonstream.parse('*'),
+      // I believe this passthrough is necessary cause `jsonstream` returns
+      // weird custom streams that behave funny sometimes.
+      ms.through.obj()
+    )
+    extractUpdated(entryStream, 'cached-entry-stream', cb)
+  })
+}
+&nbsp;
+// Stream of entry updates from the server. If `latest` is `0`, streams the
+// entire metadata object from the registry.
+module.exports._createEntryUpdateStream = createEntryUpdateStream
+function createEntryUpdateStream (all, auth, staleness, latest, cb) {
+  log.verbose('all-package-metadata', 'creating remote entry stream')
+  var params = {
+    timeout: 600,
+    follow: true,
+    staleOk: true,
+    auth: auth,
+    streaming: true
+  }
+  var partialUpdate = false
+  if (latest &amp;&amp; (Date.now() - latest &lt; (staleness * 1000))) {
+    // Skip the request altogether if our `latest` isn't stale.
+    log.verbose('all-package-metadata', 'Local data up to date, skipping update')
+    return cb(null)
+  } else if (latest === 0) {
+    log.warn('', 'Building the local index for the first time, please be patient')
+    log.verbose('all-package-metadata', 'No cached data: requesting full metadata db')
+  } else {
+    log.verbose('all-package-metadata', 'Cached data present with timestamp:', latest, 'requesting partial index update')
+    all += '/since?stale=update_after&amp;startkey=' + latest
+    partialUpdate = true
+  }
+  npm.registry.request(all, params, function (er, res) {
+    if (er) return cb(er)
+    log.silly('all-package-metadata', 'request stream opened, code:', res.statusCode)
+    // NOTE - The stream returned by `request` seems to be very persnickety
+    //        and this is almost a magic incantation to get it to work.
+    //        Modify how `res` is used here at your own risk.
+    var entryStream = ms.pipeline.obj(
+      res,
+      ms.through(function (chunk, enc, cb) {
+        cb(null, chunk)
+      }),
+      gunzip(),
+      jsonstream.parse('*', function (pkg, key) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (key[0] === '_updated' || key[0][0] !== '_') {
+          return pkg
+        }
+      })
+    )
+    if (partialUpdate) {
+      // The `/all/since` endpoint doesn't return `_updated`, so we
+      // just use the request's own timestamp.
+      cb(null, entryStream, Date.parse(res.headers.date))
+    } else {
+      extractUpdated(entryStream, 'entry-update-stream', cb)
+    }
+  })
+}
+&nbsp;
+// Both the (full) remote requests and the local index have `_updated` as their
+// first returned entries. This is the "latest" unix timestamp for the metadata
+// in question. This code does a bit of juggling with the data streams
+// so that we can pretend that field doesn't exist, but still extract `latest`
+function extractUpdated (entryStream, label, cb) {
+  cb = once(cb)
+  log.silly('all-package-metadata', 'extracting latest')
+  function nope (msg) {
+    return function () {
+      log.warn('all-package-metadata', label, msg)
+      entryStream.removeAllListeners()
+      entryStream.destroy()
+      cb(new Error(msg))
+    }
+  }
+  var onErr = nope('Failed to read stream')
+  var onEnd = nope('Empty or invalid stream')
+  entryStream.on('error', onErr)
+  entryStream.on('end', onEnd)
+  entryStream.once('data', function (latest) {
+    log.silly('all-package-metadata', 'got first stream entry for', label, latest)
+    entryStream.removeListener('error', onErr)
+    entryStream.removeListener('end', onEnd)
+    // Because `.once()` unpauses the stream, we re-pause it after the first
+    // entry so we don't vomit entries into the void.
+    entryStream.pause()
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (typeof latest === 'number') {
+      // The extra pipeline is to return a stream that will implicitly unpause
+      // after having an `.on('data')` listener attached, since using this
+      // `data` event broke its initial state.
+      cb(null, ms.pipeline.obj(entryStream, ms.through.obj()), latest)
+    } else {
+<span class="cstat-no" title="statement not covered" >      cb(new Error('expected first entry to be _updated'))</span>
+    }
+  })
+}
+&nbsp;
+// Creates a stream that writes input metadata to the current cache.
+// Cache updates are atomic, and the stream closes when *everything* is done.
+// The stream is also passthrough, so entries going through it will also
+// be output from it.
+module.exports._createCacheWriteStream = createCacheWriteStream
+function createCacheWriteStream (cacheFile, latest, cb) {
+  _ensureCacheDirExists(cacheFile, function (err) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (err) <span class="cstat-no" title="statement not covered" >return cb(err)</span>
+    log.silly('all-package-metadata', 'creating output stream')
+    var outStream = _createCacheOutStream()
+    var cacheFileStream = writeStreamAtomic(cacheFile)
+    var inputStream = _createCacheInStream(cacheFileStream, outStream, latest)
+&nbsp;
+    // Glue together the various streams so they fail together.
+    // `cacheFileStream` errors are already handled by the `inputStream`
+    // pipeline
+    var errEmitted = false
+    linkStreams(inputStream, outStream, <span class="fstat-no" title="function not covered" >fu</span>nction () { <span class="cstat-no" title="statement not covered" >errEmitted = true </span>})
+&nbsp;
+    cacheFileStream.on('close', function () { !errEmitted &amp;&amp; outStream.end() })
+&nbsp;
+    cb(null, ms.duplex.obj(inputStream, outStream))
+  })
+}
+&nbsp;
+function _ensureCacheDirExists (cacheFile, cb) {
+  var cacheBase = path.dirname(cacheFile)
+  log.silly('all-package-metadata', 'making sure cache dir exists at', cacheBase)
+  getCacheStat(function (er, st) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return cb(er)</span>
+    mkdir(cacheBase, function (er, made) {
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >return cb(er)</span>
+      chownr(made || cacheBase, st.uid, st.gid, cb)
+    })
+  })
+}
+&nbsp;
+function _createCacheOutStream () {
+  return ms.pipeline.obj(
+    // These two passthrough `through` streams compensate for some
+    // odd behavior with `jsonstream`.
+    ms.through(),
+    jsonstream.parse('*', function (obj, key) {
+      // This stream happens to get _updated passed through it, for
+      // implementation reasons. We make sure to filter it out cause
+      // the fact that it comes t
+      if (typeof obj === 'object') {
+        return obj
+      }
+    }),
+    ms.through.obj()
+  )
+}
+&nbsp;
+function _createCacheInStream (writer, outStream, latest) {
+  var updatedWritten = false
+  var inStream = ms.pipeline.obj(
+    ms.through.obj(function (pkg, enc, cb) {
+      if (!updatedWritten &amp;&amp; typeof pkg === 'number') {
+        // This is the `_updated` value getting sent through.
+        updatedWritten = true
+        return cb(null, ['_updated', pkg])
+      } else <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof pkg !== 'object') {
+<span class="cstat-no" title="statement not covered" >        this.emit('error', new Error('invalid value written to input stream'))</span>
+      } else {
+        // The [key, val] format is expected by `jsonstream` for object writing
+        cb(null, [pkg.name, pkg])
+      }
+    }),
+    jsonstream.stringifyObject('{', ',', '}'),
+    ms.through(function (chunk, enc, cb) {
+      // This tees off the buffer data to `outStream`, and then continues
+      // the pipeline as usual
+      outStream.write(chunk, enc, function () {
+        cb(null, chunk)
+      })
+    }),
+    // And finally, we write to the cache file.
+    writer
+  )
+  inStream.write(latest)
+  return inStream
+}
+&nbsp;
+// Links errors between `a` and `b`, preventing cycles, and calls `cb` if
+// an error happens, once per error.
+function linkStreams (a, b, cb) {
+  var lastError = null
+  a.on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (err) {
+<span class="cstat-no" title="statement not covered" >    if (err !== lastError) {</span>
+<span class="cstat-no" title="statement not covered" >      lastError = err</span>
+<span class="cstat-no" title="statement not covered" >      b.emit('error', err)</span>
+<span class="cstat-no" title="statement not covered" >      cb(err)</span>
+    }
+  })
+  b.on('error', <span class="fstat-no" title="function not covered" >fu</span>nction (err) {
+<span class="cstat-no" title="statement not covered" >    if (err !== lastError) {</span>
+<span class="cstat-no" title="statement not covered" >      lastError = err</span>
+<span class="cstat-no" title="statement not covered" >      a.emit('error', err)</span>
+<span class="cstat-no" title="statement not covered" >      cb(err)</span>
+    }
+  })
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

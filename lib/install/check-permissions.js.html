@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/install/check-permissions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/install</a> check-permissions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">88.64% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>39/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>11/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.68% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>38/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">277x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-yes">1699x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1112x</span>
+<span class="cline-any cline-yes">1112x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">575x</span>
+<span class="cline-any cline-yes">575x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">227x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">582x</span>
+<span class="cline-any cline-yes">582x</span>
+<span class="cline-any cline-yes">582x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1119x</span>
+<span class="cline-any cline-yes">1119x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5444x</span>
+<span class="cline-any cline-yes">5444x</span>
+<span class="cline-any cline-yes">5444x</span>
+<span class="cline-any cline-yes">1119x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4325x</span>
+<span class="cline-any cline-yes">4325x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2276x</span>
+<span class="cline-any cline-yes">2276x</span>
+<span class="cline-any cline-yes">2276x</span>
+<span class="cline-any cline-yes">2276x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+var path = require('path')
+var log = require('npmlog')
+var validate = require('aproba')
+var uniq = require('lodash.uniq')
+var asyncMap = require('slide').asyncMap
+var npm = require('../npm.js')
+var exists = require('./exists.js')
+var writable = require('./writable.js')
+&nbsp;
+module.exports = function (actions, next) {
+  validate('AF', arguments)
+  var errors = []
+  asyncMap(actions, function (action, done) {
+    var cmd = action[0]
+    var pkg = action[1]
+    switch (cmd) {
+      case 'add':
+        hasAnyWriteAccess(path.resolve(pkg.path, '..'), errors, done)
+        break
+      case 'update':
+      case 'remove':
+        hasWriteAccess(pkg.path, errors, andHasWriteAccess(path.resolve(pkg.path, '..'), errors, done))
+        break
+      case 'move':
+        hasAnyWriteAccess(pkg.path, errors, andHasWriteAccess(path.resolve(pkg.fromPath, '..'), errors, done))
+        break
+      default:
+        done()
+    }
+  }, function () {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!errors.length) return next()
+<span class="cstat-no" title="statement not covered" >    uniq(errors.map(<span class="fstat-no" title="function not covered" >fu</span>nction (er) { <span class="cstat-no" title="statement not covered" >return 'Missing write access to ' + er.path </span>})).forEach(<span class="fstat-no" title="function not covered" >fu</span>nction (er) {</span>
+<span class="cstat-no" title="statement not covered" >      log.warn('checkPermissions', er)</span>
+    })
+<span class="cstat-no" title="statement not covered" >    npm.config.get('force') ? next() : next(errors[0])</span>
+  })
+}
+&nbsp;
+function andHasWriteAccess (dir, errors, done) {
+  validate('SAF', arguments)
+  return function () {
+    hasWriteAccess(dir, errors, done)
+  }
+}
+&nbsp;
+function hasAnyWriteAccess (dir, errors, done) {
+  validate('SAF', arguments)
+  findNearestDir()
+  function findNearestDir () {
+    var nextDir = path.resolve(dir, '..')
+    exists(dir, function (dirDoesntExist) {
+      if (!dirDoesntExist || nextDir === dir) {
+        return hasWriteAccess(dir, errors, done)
+      } else {
+        dir = nextDir
+        findNearestDir()
+      }
+    })
+  }
+}
+&nbsp;
+function hasWriteAccess (dir, errors, done) {
+  validate('SAF', arguments)
+  writable(dir, function (er) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (er) <span class="cstat-no" title="statement not covered" >errors.push(er)</span>
+    done()
+  })
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

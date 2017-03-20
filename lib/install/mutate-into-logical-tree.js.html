@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for lib/install/mutate-into-logical-tree.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">lib/install</a> mutate-into-logical-tree.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.72% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>77/78</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">90% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>36/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>70/70</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19645x</span>
+<span class="cline-any cline-yes">19645x</span>
+<span class="cline-any cline-yes">4327x</span>
+<span class="cline-any cline-yes">15318x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15316x</span>
+<span class="cline-any cline-yes">15316x</span>
+<span class="cline-any cline-yes">15316x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-yes">4688x</span>
+<span class="cline-any cline-yes">4688x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4329x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4329x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4327x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4327x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4329x</span>
+<span class="cline-any cline-yes">6082x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">255x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">339x</span>
+<span class="cline-any cline-yes">230x</span>
+<span class="cline-any cline-yes">230x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">230x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6387x</span>
+<span class="cline-any cline-yes">6387x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">6157x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">6387x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-yes">4634x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict'
+var union = require('lodash.union')
+var without = require('lodash.without')
+var validate = require('aproba')
+var flattenTree = require('./flatten-tree.js')
+var isExtraneous = require('./is-extraneous.js')
+var validateAllPeerDeps = require('./deps.js').validateAllPeerDeps
+var packageId = require('../utils/package-id.js')
+var moduleName = require('../utils/module-name.js')
+&nbsp;
+// Return true if tree is a part of a cycle that:
+//   A) Never connects to the top of the tree
+//   B) Has not not had a point in the cycle arbitraryly declared its top
+//      yet.
+function isDisconnectedCycle (tree, seen) {
+  if (!seen) seen = {}
+  if (tree.isTop || tree.cycleTop || tree.requiredBy.length === 0) {
+    return false
+  } else if (seen[tree.path]) {
+    return true
+  } else {
+    seen[tree.path] = true
+    return tree.requiredBy.every(function (node) {
+      return isDisconnectedCycle(node, Object.create(seen))
+    })
+  }
+}
+&nbsp;
+var mutateIntoLogicalTree = module.exports = function (tree) {
+  validate('O', arguments)
+&nbsp;
+  validateAllPeerDeps(tree, function (tree, pkgname, version) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!tree.missingPeers) tree.missingPeers = {}
+    tree.missingPeers[pkgname] = version
+  })
+&nbsp;
+  var flat = flattenTree(tree)
+&nbsp;
+  Object.keys(flat).sort().forEach(function (flatname) {
+    var node = flat[flatname]
+    if (!(node.requiredBy &amp;&amp; node.requiredBy.length)) return
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (node.parent) {
+      // If a node is a cycle that never reaches the root of the logical
+      // tree then we'll leave it attached to the root, or else it
+      // would go missing. Further we'll note that this is the node in the
+      // cycle that we picked arbitrarily to be the one attached to the root.
+      // others will fall
+      if (isDisconnectedCycle(node)) {
+        node.cycleTop = true
+      // Nor do we want to disconnect non-cyclical extraneous modules from the tree.
+      } else <span class="missing-if-branch" title="else path not taken" >E</span>if (node.requiredBy.length) {
+        // regular deps though, we do, as we're moving them into the capable
+        // hands of the modules that require them.
+        node.parent.children = without(node.parent.children, node)
+      }
+    }
+&nbsp;
+    node.requiredBy.forEach(function (parentNode) {
+      parentNode.children = union(parentNode.children, [node])
+    })
+  })
+  return tree
+}
+&nbsp;
+module.exports.asReadInstalled = function (tree) {
+  mutateIntoLogicalTree(tree)
+  return translateTree(tree)
+}
+&nbsp;
+function translateTree (tree) {
+  return translateTree_(tree, {})
+}
+&nbsp;
+function translateTree_ (tree, seen) {
+  var pkg = tree.package
+  if (seen[tree.path]) return pkg
+  seen[tree.path] = pkg
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (pkg._dependencies) <span class="cstat-no" title="statement not covered" >return pkg</span>
+  pkg._dependencies = pkg.dependencies
+  pkg.dependencies = {}
+  tree.children.forEach(function (child) {
+    pkg.dependencies[moduleName(child)] = translateTree_(child, seen)
+  })
+&nbsp;
+  function markMissing (name, requiredBy) {
+    if (pkg.dependencies[name]) {
+      if (pkg.dependencies[name].missing) return
+      pkg.dependencies[name].invalid = true
+      pkg.dependencies[name].realName = name
+      pkg.dependencies[name].extraneous = false
+    } else {
+      pkg.dependencies[name] = {
+        requiredBy: requiredBy,
+        missing: true,
+        optional: !!pkg.optionalDependencies[name]
+      }
+    }
+  }
+&nbsp;
+  Object.keys(tree.missingDeps).forEach(function (name) {
+    markMissing(name, tree.missingDeps[name])
+  })
+  Object.keys(tree.missingDevDeps).forEach(function (name) {
+    markMissing(name, tree.missingDevDeps[name])
+  })
+  var checkForMissingPeers = (tree.parent ? [] : [tree]).concat(tree.children)
+  checkForMissingPeers.filter(function (child) {
+    return child.missingPeers
+  }).forEach(function (child) {
+    Object.keys(child.missingPeers).forEach(function (pkgname) {
+      var version = child.missingPeers[pkgname]
+      var peerPkg = pkg.dependencies[pkgname]
+      if (!peerPkg) {
+        peerPkg = pkg.dependencies[pkgname] = {
+          _id: pkgname + '@' + version,
+          name: pkgname,
+          version: version
+        }
+      }
+      if (!peerPkg.peerMissing) peerPkg.peerMissing = []
+      peerPkg.peerMissing.push({
+        requiredBy: packageId(child),
+        requires: pkgname + '@' + version
+      })
+    })
+  })
+  pkg.path = tree.path
+&nbsp;
+  pkg.error = tree.error
+  pkg.extraneous = isExtraneous(tree)
+  if (tree.target &amp;&amp; tree.parent &amp;&amp; !tree.parent.target) pkg.link = tree.realpath
+  return pkg
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Mar 20 2017 15:16:34 GMT-0700 (PDT)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
